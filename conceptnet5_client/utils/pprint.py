@@ -1,9 +1,9 @@
 # Based on: http://ginstrom.com/scribbles/2007/09/04/pretty-printing-a-table-in-python/
 
 import sys
+import importlib
 
-reload(sys)
-sys.setdefaultencoding("UTF-8")
+importlib.reload(sys)
 
 
 def format_num(num):

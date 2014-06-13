@@ -132,4 +132,4 @@ class Assertion:
 
 
     def print_assertion(self):
-        print '(%s -> %s -> %s)' % (self.start, self.relation, self.end)
+        print ('(%s -> %s -> %s)' % (self.start, self.relation, self.end))

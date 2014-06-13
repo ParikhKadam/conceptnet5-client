@@ -1,5 +1,6 @@
 import sys
 import urllib
+import urllib.parse
 
 from conceptnet5_client.utils.debug import print_debug
 from conceptnet5_client.utils.http import make_http_request
@@ -15,13 +16,13 @@ class LookUp:
     '''
     def __init__(self, lang = 'en', **kwargs):
         query_args = {}
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             if is_arg_valid(key, settings.SUPPORTED_LOOKUP_ARGS):
                 query_args[key] = value
                 # print_debug('%s : %s' % (key, value), 'arg')
             else:
                 print_debug('%s : %s -- THIS ARG IS NOT SUPPORTED!' % (key, value), 'ArgError')
-        self.encoded_query_args = urllib.urlencode(query_args)
+        self.encoded_query_args = urllib.parse.urlencode(query_args)
         self.lang = lang
     
 
@@ -35,7 +36,7 @@ class LookUp:
         concept = concept.replace(' ', '_')
         url = ''.join(['%s/c/%s/%s?' % (settings.BASE_LOOKUP_URL, self.lang, concept)]) + self.encoded_query_args
         print_debug(url, 'url')
-        json_data = make_http_request(url)
+        json_data = make_http_request(url, url.encode('utf-8'))
         return json_data
 
 
@@ -49,7 +50,7 @@ class LookUp:
         '''
         if source_uri:
             url = ''.join(['%s%s' % (settings.BASE_LOOKUP_URL, source_uri)])
-            print url
+            print (url)
             json_data = make_http_request(url)
             return json_data
         else:
@@ -64,13 +65,13 @@ class Search:
     '''
     def __init__(self, **kwargs):
         query_args = {}
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             if is_arg_valid(key, settings.SUPPORTED_SEARCH_ARGS):
                 query_args[key] = value
                 # print_debug('%s : %s' % (key, value), 'arg')
             else:
                 print_debug('%s : %s -- THIS ARG IS NOT SUPPORTED!' % (key, value), 'ArgError')
-        self.encoded_query_args = urllib.urlencode(query_args)
+        self.encoded_query_args = urllib.parse.urlencode(query_args)
         
         
     def search(self):
@@ -91,13 +92,13 @@ class Association:
     '''
     def __init__(self, lang = 'en', **kwargs):
         query_args = {}
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             if is_arg_valid(key, settings.SUPPORTED_ASSOCIATION_ARGS):
                 query_args[key] = value
                 # print_debug('%s : %s' % (key, value), 'arg')
             else:
                 print_debug('%s : %s -- THIS ARG IS NOT SUPPORTED!' % (key, value), 'ArgError')
-        self.encoded_query_args = urllib.urlencode(query_args)
+        self.encoded_query_args = urllib.parse.urlencode(query_args)
         self.lang = lang
 
 

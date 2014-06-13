@@ -1,4 +1,3 @@
-from itertools import tee, izip
 
 def is_arg_valid(arg, arg_list):
     '''
@@ -15,4 +14,4 @@ def pairwise(iterable):
     '''
     a, b = tee(iterable)
     next(b, None)
-    return izip(a, b)
+    return zip(a, b)
