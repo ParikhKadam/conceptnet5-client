@@ -51,7 +51,7 @@ class LookUp:
         if source_uri:
             url = ''.join(['%s%s' % (settings.BASE_LOOKUP_URL, source_uri)])
             print (url)
-            json_data = make_http_request(url)
+            json_data = make_http_request(url, url.encode('utf-8'))
             return json_data
         else:
             print_debug('You should pass argument \'source\'.', 'ArgError')
@@ -81,7 +81,7 @@ class Search:
         '''
         url = ''.join(['%s%s' % (settings.BASE_SEARCH_URL, '?')]) + self.encoded_query_args
         print_debug(url, 'url')
-        json_data = make_http_request(url)
+        json_data = make_http_request(url, url.encode('utf-8'))
         return json_data
 
         
@@ -110,7 +110,7 @@ class Association:
         '''
         url = ''.join(['%s/c/%s/%s?' % (settings.BASE_ASSOCIATION_URL, self.lang, concept)]) + self.encoded_query_args
         print_debug(url, 'url')
-        json_data = make_http_request(url)
+        json_data = make_http_request(url, url.encode('utf-8'))
         return json_data
 
 
@@ -123,7 +123,7 @@ class Association:
         terms = ','.join(term_list)
         url = ''.join(['%s/list/%s/%s' % (settings.BASE_ASSOCIATION_URL, self.lang, terms)]) + self.encoded_query_args
         print_debug(url, 'url')
-        json_data = make_http_request(url)
+        json_data = make_http_request(url, url.encode('utf-8'))
         return json_data
 
 

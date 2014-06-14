@@ -8,7 +8,7 @@ except ImportError:
     import json
 
 from urllib.error import URLError
-from urllib3.exceptions import HTTPError
+from urllib.error import HTTPError
 
 from conceptnet5_client.utils.debug import print_debug
 from conceptnet5_client.cache.file_cache import cache

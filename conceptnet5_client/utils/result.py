@@ -22,7 +22,7 @@ class Result:
         for key, value in json_data.items():
             if is_arg_valid(key, SUPPORTED_KEYS):
                 result[key] = value
-                # print_debug('%s : %s' % (key, value), 'arg')
+                #print_debug('%s : %s' % (key, value), 'arg')
             else:
                 print_debug('%s : %s -- THIS KEY IS NOT SUPPORTED!' % (key, value), 'KeyError')
         self.result = result
@@ -32,7 +32,7 @@ class Result:
         '''
         Prints the result of the query in key = value manner without any processing.
         '''
-        for key, value in self.result.iteritems():
+        for key, value in self.result.items():
             print_debug('%s = %s' % (key, value))
 
 
